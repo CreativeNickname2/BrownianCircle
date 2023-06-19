@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Brownian Circle</title>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas>
+
+    <script>
+      const canvas = document.getElementById("myCanvas");
+      const ctx = canvas.getContext("2d");
+      let x = canvas.width / 2;
+      let y = canvas.height / 2;
+      let dx = 0, dy = 0;
+      let step = 3;
+      let radius = 30;
+      
+      setInterval(brownianCircle, 50);
+      function brownianCircle() {  
+        switch (Math.floor(Math.random() * 8)) {
+          case 0:
+            dx = step; dy = 0;
+            break;
+          case 1:
+            dx = step; dy = -step;
+            break;
+          case 2:
+            dx = 0; dy = -step;
+            break;
+          case 3:
+            dx = -step; dy = -step;
+            break;
+          case 4:
+            dx = -step; dy = 0;
+            break;
+          case 5:
+            dx = -step; dy = step;
+            break;
+          case 6:
+            dx = 0; dy = step;
+            break;
+          case 7:
+            dx = step; dy = step;
+            break;
+          default:
+            break;
+        }
+
+        x = x + dx;
+        y = y + dy;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "green";
+        ctx.fill();
+      }
+    </script>
+  </body>
+</html>
